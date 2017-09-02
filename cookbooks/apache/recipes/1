@@ -1,0 +1,7 @@
+
+createusers = data_bag_item('users','kapil')
+
+	user "#{createusers["id"]}" do
+		comment   createusers["comment"]
+		uid	  createusers["uid"]
+		end 

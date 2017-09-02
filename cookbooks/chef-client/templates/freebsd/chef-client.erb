@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# PROVIDE: chef
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+<% if node["chef_client"]["ca_cert_path"] %>
+SSL_CERT_FILE="<%= node["chef_client"]["ca_cert_path"] %>"
+export SSL_CERT_FILE
+<% end %>
+
+name="chef"
+pidfile="<%= node["chef_client"]["run_path"] %>/${name}.pid"
+command="<%= @client_bin %>"
+command_interpreter="<%= RbConfig.ruby %>"
+command_args="-i <%= node["chef_client"]["interval"] %> -s <%= node["chef_client"]["splay"] %> -d -P ${pidfile}"
+load_rc_config $name
+run_rc_command "$1"

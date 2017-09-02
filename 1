@@ -1,0 +1,10 @@
+
+#creatusers = data_bag_item('users','kapil')
+	
+	search(:users, 'shell:"/bin/bash"').each do |creatusers|
+	
+	user "#{creatusers['id']}" do
+		comment   creatusers['comment']
+		gid	  creatusers['gid']
+	end 
+	end

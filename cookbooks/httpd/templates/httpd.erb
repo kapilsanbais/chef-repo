@@ -1,0 +1,8 @@
+<% if @port == 80 -%>
+	namevirtualhost	*:80
+<% end -%>
+
+<virtualhost *:<%= @port %>>
+servername     <%=  @websitename %>
+Documentroot   <%= @documentroot %>
+</virtualhost>

@@ -1,0 +1,7 @@
+<% if node['platform']=="amazon" -%>
+	NameVirtualhost *:80
+<% end -%>
+<virtualhost <%= @webip %>:<%= @port %>>
+servername  <%= @websitename %>
+documentroot /var/www/<%= @webdir %>
+</virtualhost>
